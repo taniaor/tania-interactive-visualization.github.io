@@ -1,0 +1,28 @@
+body {
+  background-color: beige;
+}
+
+#header {
+    background-color: gray;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 70px;
+}
+
+#second-graph {
+  height: 500px;
+  background-color: white;
+}
+
+h1 {
+  text-align: center;
+  color: blue;
+}
+
+
+p {
+  color: red;
+}
