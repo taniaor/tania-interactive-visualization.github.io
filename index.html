@@ -1,51 +1,3170 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="styles.css">
-    <title>Chart.js example</title>
-</head>
+﻿<!DOCTYPE html> 
+<html> 
 
-<body>
+<head> 
+    <title>ChartJS Stacked Bar Chart Example</title> 
+    <script src= 
+"https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"> 
+    </script> 
+    <script src= 
+"https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"> 
+    </script> 
+</head> 
+
+<body> 
+    
+    <h3>Chart JS Stacked Chart </h3> 
+    <button onclick="fetchData()">Fetch</button> 
+    <div> 
+        <canvas id="stackedChartID"></canvas> 
+    </div> 
 
 
-    <nav class="navbar fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Tania Ortiz-Rosales</a>
-        <a class="navbar-brand" href="#">Interactive Visualization</a>
-        <a class="navbar-brand" href="#">COEN 396B</a>
-    </nav>
+    <script> 
 
-<div>
-  <canvas id="myChart"></canvas>
-</div>
+        const data = 
+        [
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 15.8
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 5.5
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 8.6
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling",
+              "Volume": 0.66,
+              "Weight": 6.5
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Landfill in Recycling",
+              "Volume": 0.1,
+              "Weight": 1.2
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling",
+              "Volume": 0.25,
+              "Weight": 5.2
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling",
+              "Volume": 0.15,
+              "Weight": 11.7
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling",
+              "Volume": 1.25,
+              "Weight": 13.6
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 4.1
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 2.3
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Landfill in Recycling",
+              "Volume": 0.5,
+              "Weight": 4.8
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Landfill in Recycling",
+              "Volume": 0.1,
+              "Weight": 2
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Landfill in Recycling",
+              "Volume": 0.05,
+              "Weight": 0.6
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.33,
+              "Weight": 1.4
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.33,
+              "Weight": 2.8
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.1,
+              "Weight": 1.6
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Compost",
+              "Volume": 0.75,
+              "Weight": 11.2
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Landfill in Compost",
+              "Volume": 0.05,
+              "Weight": 0.9
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Compost",
+              "Volume": 0.75,
+              "Weight": 3.2
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Compost",
+              "Volume": 0.25,
+              "Weight": 22.2
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.05,
+              "Weight": 0.1
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.12,
+              "Weight": 2.8
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.12,
+              "Weight": 0.2
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Landfill in Compost",
+              "Volume": 0.06,
+              "Weight": 1.7
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.05,
+              "Weight": 0.5
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.75,
+              "Weight": 6.2
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 7.4
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 7.9
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 5.2
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 7.3
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 6.4
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.5,
+              "Weight": 2.7
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.05,
+              "Weight": 1
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 33.2
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.75,
+              "Weight": 5.9
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.05,
+              "Weight": 1.1
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.25,
+              "Weight": 2.7
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Landfill",
+              "Volume": 0.25,
+              "Weight": 1.5
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Landfill",
+              "Volume": 1,
+              "Weight": 9.8
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 3.8
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.4
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Landfill",
+              "Volume": 0.13,
+              "Weight": 1
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 15.6
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 3.8
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.05,
+              "Weight": 0.05
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 7.8
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.05,
+              "Weight": 0.4
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 8.7
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 10.2
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 16
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 19.2
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 33.5
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Landfill",
+              "Volume": 1,
+              "Weight": 8.8
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 11.7
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Landfill",
+              "Volume": 0.75,
+              "Weight": 7.5
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.1,
+              "Weight": 5.4
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 0.9
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.75,
+              "Weight": 10.5
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 19.1
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 2.1
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 1.2
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Landfill",
+              "Volume": 0.1,
+              "Weight": 0.1
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 10.3
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.25,
+              "Weight": 16.3
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.25,
+              "Weight": 3.9
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 2.1
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.3
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 8.1
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 2.1
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Landfill",
+              "Volume": 0.25,
+              "Weight": 4.9
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Landfill",
+              "Volume": 0.5,
+              "Weight": 6.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Landfill",
+              "Volume": 0,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.1,
+              "Weight": 2.9
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 1.6
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 1.8
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.33,
+              "Weight": 6.6
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.25,
+              "Weight": 3.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 1.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.1,
+              "Weight": 2.8
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 2.9
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Landfill",
+              "Volume": 0.75,
+              "Weight": 5.6
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.1,
+              "Weight": 1.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.1,
+              "Weight": 3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.9
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.2
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 1.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.6
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 2.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.05,
+              "Weight": 0.05
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 4.9
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 8
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.33,
+              "Weight": 0.8
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.25,
+              "Weight": 1.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.33,
+              "Weight": 2.4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Landfill in Recycling",
+              "Volume": 0.33,
+              "Weight": 3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.75,
+              "Weight": 4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.25,
+              "Weight": 0.2
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.1,
+              "Weight": 1.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.5,
+              "Weight": 6.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.1,
+              "Weight": 0.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Reusables in Recycling",
+              "Volume": 0.1,
+              "Weight": 0.7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 12.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.05,
+              "Weight": 0.8
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost",
+              "Volume": 1,
+              "Weight": 13.2
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost",
+              "Volume": 1,
+              "Weight": 17.7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost",
+              "Volume": 1,
+              "Weight": 13.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.1,
+              "Weight": 0.4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost",
+              "Volume": 0.1,
+              "Weight": 8.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost",
+              "Volume": 1,
+              "Weight": 9.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Landfill in Compost",
+              "Volume": 0.33,
+              "Weight": 1.8
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Reusables in Compost",
+              "Weight": 0.4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.1,
+              "Weight": 0.4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.05,
+              "Weight": 0.7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.1,
+              "Weight": 0.7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.1,
+              "Weight": 0.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.05,
+              "Weight": 0.05
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 3.6
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1.25,
+              "Weight": 9.8
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 2.3
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 8.7
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 5.6
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 1.9
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 1.9
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 6.8
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Landfill",
+              "Volume": 1,
+              "Weight": 15.2
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.05,
+              "Weight": 0.1
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 10.9
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Landfill",
+              "Volume": 0.1,
+              "Weight": 1.3
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.5
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Landfill",
+              "Volume": 0.33,
+              "Weight": 2.3
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.8,
+              "Weight": 8.7
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 12.4
+             },
+             {
+              "Building": "Facilities",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.25,
+              "Weight": 16.6
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.5
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.2
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Landfill",
+              "Volume": 0.75,
+              "Weight": 6.3
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 5.5
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 43.2
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 4.5
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.67,
+              "Weight": 3.9
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.2
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.9,
+              "Weight": 11.4
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 11.9
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 8.3
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 3.1
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.67,
+              "Weight": 2.7
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 2.8
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.5
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.1
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.1
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.1,
+              "Weight": 10.2
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.5,
+              "Weight": 2
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.7
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Landfill",
+              "Volume": 0.75,
+              "Weight": 3.2
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 30.7
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Landfill",
+              "Volume": 0.1,
+              "Weight": 0.8
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.8
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 10.1
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.5,
+              "Weight": 29.5
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 7.7
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.13,
+              "Weight": 0.8
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 5.3
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 5
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 5.9
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.2
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Landfill",
+              "Volume": 1,
+              "Weight": 9
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.06,
+              "Weight": 1.5
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 3.6
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 19.8
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.03,
+              "Weight": 0.1
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.04,
+              "Weight": 1.7
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.03,
+              "Weight": 0.1
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.7
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 23.8
+             },
+             {
+              "Building": "University Villas",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.25,
+              "Weight": 1.1
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 7.4
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 7.3
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.9
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 6.9
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 5.1
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.25,
+              "Weight": 2.6
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.75,
+              "Weight": 5.7
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.13,
+              "Weight": 1.6
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 1
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Landfill",
+              "Volume": 0.5,
+              "Weight": 5.4
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.06,
+              "Weight": 7.9
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 2.1
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.2
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.6,
+              "Weight": 4
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.75,
+              "Weight": 7.9
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.01,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 8
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.25,
+              "Weight": 24.2
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 6.1
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.9
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 5
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Landfill",
+              "Volume": 2,
+              "Weight": 16.8
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 7
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 2.7
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.2,
+              "Weight": 14.9
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.8
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.67,
+              "Weight": 4.7
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 1.8
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.33,
+              "Weight": 8.1
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.3
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 2.6
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 8
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.13,
+              "Weight": 0.9
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 3.9
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 5.3
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 4.2
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Landfill",
+              "Volume": 0.67,
+              "Weight": 5.9
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 10.7
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.6
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.01,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Graham",
+              "Stream": "Landfill",
+              "Volume": 0.01,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Landfill",
+              "Volume": 0.5,
+              "Weight": 6.3
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Landfill",
+              "Volume": 0.01,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.1,
+              "Weight": 2.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 1.6
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 1.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.33,
+              "Weight": 6.6
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.01,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.25,
+              "Weight": 3.5
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 1.5
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 6.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 0.25,
+              "Weight": 6.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 8.6
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 1.5,
+              "Weight": 22.5
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 6.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 2,
+              "Weight": 29.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 8.7
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 0.5,
+              "Weight": 4.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 0.13,
+              "Weight": 0.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Landfill in Recycling",
+              "Volume": 0.33,
+              "Weight": 4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Landfill in Recycling",
+              "Volume": 0.01,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.5,
+              "Weight": 3.2
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.01,
+              "Weight": 1.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.5,
+              "Weight": 1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 3
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Reusables in Recycling",
+              "Volume": 0.5,
+              "Weight": 8.7
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 25.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 0.01,
+              "Weight": 1.3
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 9.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 1.25,
+              "Weight": 11.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling",
+              "Volume": 0.2,
+              "Weight": 16.6
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Landfill in Compost",
+              "Volume": 0.01,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Reusables in Compost",
+              "Volume": 0.01,
+              "Weight": 0.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost",
+              "Volume": 0.75,
+              "Weight": 8.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.01,
+              "Weight": 0.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost",
+              "Volume": 0.01,
+              "Weight": 1.6
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.01,
+              "Weight": 0.5
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost",
+              "Volume": 0.33,
+              "Weight": 0.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.01,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.01,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 12.5
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 5.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 16.7
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 5
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 29.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 7.6
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 2.7
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.25,
+              "Weight": 23.6
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1.5,
+              "Weight": 9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Landfill",
+              "Volume": 1,
+              "Weight": 16.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.5,
+              "Weight": 42.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 15.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 17.7
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.5,
+              "Weight": 5.2
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.75,
+              "Weight": 9.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.01,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Landfill",
+              "Volume": 0.5,
+              "Weight": 5.2
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.5,
+              "Weight": 27
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 1.5
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Reusables in Landfill",
+              "Volume": 1,
+              "Weight": 5.6
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 9.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 2.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 3.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 0.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 5.3
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 1.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.13,
+              "Weight": 2
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 2.3
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 3.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Landfill",
+              "Volume": 0.75,
+              "Weight": 6.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.25,
+              "Weight": 2.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 13.2
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 41.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 1.2
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 0.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 1.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.03,
+              "Weight": 0.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 8.5
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 8.6
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1.25,
+              "Weight": 6.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 8.6
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.25,
+              "Weight": 33.3
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 10.7
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 7.7
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1.25,
+              "Weight": 13.2
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 7.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 44.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 10.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 4.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 8.6
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 5.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.17,
+              "Weight": 1.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.17,
+              "Weight": 5.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 11.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.03,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Landfill",
+              "Volume": 0.8,
+              "Weight": 18.3
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.04,
+              "Weight": 1.2
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 6.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 5.2
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 5.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 9.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost",
+              "Volume": 0.33,
+              "Weight": 3.3
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 33.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 16.2
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.03,
+              "Weight": 0.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.06,
+              "Weight": 0.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.8,
+              "Weight": 7.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.75,
+              "Weight": 3.6
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.8,
+              "Weight": 3.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Landfill",
+              "Volume": 0.14,
+              "Weight": 0.2
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Landfill",
+              "Volume": 0.75,
+              "Weight": 12.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 2.2
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 3.1
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.03,
+              "Weight": 0.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 11.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 43
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 16.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 42.6
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 13.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.5,
+              "Weight": 48.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.25,
+              "Weight": 23.5
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.33,
+              "Weight": 19.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 15.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 13.7
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 5
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 7
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.4
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 11.9
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Landfill",
+              "Volume": 0.1,
+              "Weight": 0.5
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.5,
+              "Weight": 7.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 1.8
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Landfill",
+              "Volume": 1,
+              "Weight": 15.5
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 1.7
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 5
+             },
+             {
+              "Building": "Benson Center",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.1,
+              "Weight": 2.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 13.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 18.2
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 13.6
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 11.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 7.2
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 13.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 9.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.75,
+              "Weight": 11.4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.13,
+              "Weight": 7.2
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.75,
+              "Weight": 7.9
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.33,
+              "Weight": 18.6
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 3.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.05,
+              "Weight": 0.4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 1.8
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Landfill",
+              "Volume": 1,
+              "Weight": 25.7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 8.7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 1.7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 3.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.33,
+              "Weight": 1.7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 2.9
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Landfill",
+              "Volume": 1.25,
+              "Weight": 7.2
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 1.4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 36.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 7.9
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 2,
+              "Weight": 31.4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.2,
+              "Weight": 1.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Reusables in Recycling",
+              "Volume": 0.17,
+              "Weight": 9.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.13,
+              "Weight": 1.4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.75,
+              "Weight": 7.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.75,
+              "Weight": 4.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.75,
+              "Weight": 5.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.08,
+              "Weight": 2.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Landfill in Recycling",
+              "Volume": 0.33,
+              "Weight": 11.7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.04,
+              "Weight": 0.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.04,
+              "Weight": 1.2
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.33,
+              "Weight": 4.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.5,
+              "Weight": 14
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.1,
+              "Weight": 3.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.75,
+              "Weight": 3.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.67,
+              "Weight": 3.8
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Landfill",
+              "Volume": 0.8,
+              "Weight": 9.7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 4.4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.13,
+              "Weight": 0.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.25,
+              "Weight": 1.8
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.6
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.1,
+              "Weight": 4.8
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 3.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.13,
+              "Weight": 1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 1.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 8.2
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 2.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 1.1,
+              "Weight": 11
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 2.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 10.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 1.1,
+              "Weight": 13.9
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.1,
+              "Weight": 1.4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.67,
+              "Weight": 3.7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost in Recycling",
+              "Volume": 0.25,
+              "Weight": 1.9
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 9.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.33,
+              "Weight": 1.6
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Landfill in Recycling",
+              "Volume": 0.33,
+              "Weight": 2.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 1,
+              "Weight": 11.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.75,
+              "Weight": 28.4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Reusables in Recycling",
+              "Volume": 0.13,
+              "Weight": 5.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.1,
+              "Weight": 2.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.1,
+              "Weight": 1.3
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.1,
+              "Weight": 1.7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling",
+              "Volume": 0.13,
+              "Weight": 1.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost",
+              "Volume": 0.1,
+              "Weight": 1.8
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost",
+              "Volume": 0.9,
+              "Weight": 11.1
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Compost",
+              "Volume": 0.5,
+              "Weight": 2.2
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Landfill in Compost",
+              "Volume": 0.1,
+              "Weight": 0.4
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.1,
+              "Weight": 0.7
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.2,
+              "Weight": 1.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.1,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Reusables in Compost",
+              "Volume": 0.1,
+              "Weight": 0.01
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.1,
+              "Weight": 0.5
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.1,
+              "Weight": 1.2
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.1,
+              "Weight": 0.6
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.1,
+              "Weight": 1.9
+             },
+             {
+              "Building": "Malley",
+              "Stream": "Recycling in Compost",
+              "Volume": 0.1,
+              "Weight": 0.8
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling in Landfill",
+              "Weight": 0.8
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling in Landfill",
+              "Weight": 0.1
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling in Landfill",
+              "Weight": 3.1
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Compost in Landfill",
+              "Weight": 3.1
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Compost in Landfill",
+              "Weight": 3.2
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Food Waste in Landfill",
+              "Weight": 6.4
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Landfill",
+              "Weight": 0.5
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Compost in Landfill",
+              "Weight": 3.5
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Compost in Landfill",
+              "Weight": 4.9
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Landfill",
+              "Weight": 0.1
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling in Landfill",
+              "Weight": 0.5
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling in Landfill",
+              "Weight": 2.7
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling in Landfill",
+              "Weight": 0.8
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling in Landfill",
+              "Weight": 2.1
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling in Landfill",
+              "Weight": 0.2
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling in Landfill",
+              "Weight": 0.5
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Landfill",
+              "Weight": 10.3
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling",
+              "Weight": 11.1
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Compost in Recycling",
+              "Weight": 0.5
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling",
+              "Weight": 4.2
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling",
+              "Weight": 1.9
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling",
+              "Weight": 1.6
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling",
+              "Weight": 4.4
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling",
+              "Weight": 1
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling",
+              "Weight": 3.1
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling",
+              "Weight": 5.7
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling",
+              "Weight": 0.9
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling",
+              "Weight": 10.9
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling",
+              "Weight": 3.3
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Landfill in Recycling",
+              "Weight": 3.3
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Compost in Recycling",
+              "Weight": 0.6
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Food Waste in Recycling",
+              "Weight": 1.7
+             },
+             {
+              "Building": "Learning Commons",
+              "Stream": "Recycling",
+              "Weight": 0.5
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.3,
+              "Weight": 50.2
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.25,
+              "Weight": 14.8
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.75,
+              "Weight": 5.4
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Compost in Landfill",
+              "Volume": 1.5,
+              "Weight": 21
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Compost in Landfill",
+              "Volume": 1,
+              "Weight": 14.6
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.6
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.2
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 3.1
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.3,
+              "Weight": 8.9
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.4
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 0.9
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.05,
+              "Weight": 0.2
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 1.4
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.1
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 4.6
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.1,
+              "Weight": 0.3
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Landfill",
+              "Volume": 0.1,
+              "Weight": 0.2
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Landfill",
+              "Volume": 0.75,
+              "Weight": 4.8
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Landfill",
+              "Volume": 1,
+              "Weight": 11.9
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Landfill",
+              "Volume": 1,
+              "Weight": 14.7
+             },
+             {
+              "Building": "Vari Hall and Lucas Hall",
+              "Stream": "Landfill",
+              "Volume": 1,
+              "Weight": 13.2
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0,
+              "Weight": 0
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.7,
+              "Weight": 7.6
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 7.2
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.3,
+              "Weight": 3.1
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0,
+              "Weight": 0
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 2.4
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.5,
+              "Weight": 30.7
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.3,
+              "Weight": 21.3
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 3.4
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Landfill",
+              "Volume": 1,
+              "Weight": 9.2
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Landfill",
+              "Volume": 1,
+              "Weight": 35.1
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Landfill",
+              "Volume": 0.5,
+              "Weight": 5.9
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Compost in Landfill",
+              "Volume": 0.3,
+              "Weight": 7.1
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 2.1
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0.5,
+              "Weight": 3.7
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.8
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 7.9
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 6.4
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 1,
+              "Weight": 4.9
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Reusables in Landfill",
+              "Volume": 0.25,
+              "Weight": 4.9
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Landfill",
+              "Volume": 0,
+              "Weight": 0
+             },
+             {
+              "Building": "Swig",
+              "Stream": "Recycling in Landfill",
+              "Volume": 0,
+              "Weight": 0
+             }  
+            ];
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
-  const ctx = document.getElementById('myChart');
+        const buildingNames = [new Set(data.map(o => o.Building))];
+        const buildingNamesSet = buildingNames[0];
+        const streamNames = [new Set(data.map(o => o.Stream))];
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+        const buildingNamesArray = convertSetToArray(buildingNamesSet);
+
+        // Get the drawing context on the canvas 
+        var myContext = document.getElementById( 
+            "stackedChartID").getContext('2d'); 
+        var myChart = new Chart(myContext, { 
+            type: 'bar', 
+            data: { 
+                labels: buildingNamesArray, 
+                datasets: [{ 
+                    label: 'Recycling', 
+                    backgroundColor: "blue", 
+                    data: [1, 15.8], 
+                }, { 
+                    label: 'Swig', 
+                    backgroundColor: "green", 
+                    data: [1, 7.4], 
+                }], 
+            }, 
+            options: { 
+                plugins: { 
+                    title: { 
+                        display: true, 
+                        text: 'Stacked Bar chart for pollution status' 
+                    }, 
+                }, 
+                scales: { 
+                    x: { 
+                        stacked: true, 
+                    }, 
+                    y: { 
+                        stacked: true 
+                    } 
+                } 
+            } 
+        }); 
+
+        function convertSetToArray(set) {
+          var a = [];
+          set.forEach( x => a.push(x) ); 
+          return a;
         }
-      }
-    }
-  });
-</script>
-</body>
-</html>
+    </script> 
+</body> 
 
+</html>
