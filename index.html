@@ -3266,6 +3266,7 @@
                 datasets: 
                 [{ 
                     label: 'Incorrectly Sorted Waste', 
+                    fontsize: 15,
                     backgroundColor: "Red", 
                     data: [16.42,21.88,17.96,44.17,19.70,21.34,70.88,0], 
                 }, { 
@@ -3276,9 +3277,16 @@
             }, 
             options: { 
                 plugins: { 
+                    legend: {
+                        labels: {
+                            font: {
+                                size: 15
+                            }
+                        }
+                    },
                     title: { 
                         display: true, 
-                        text: 'Volume of Correctly vs Incorrectly Sorted Waste',
+                        text: 'Volume of Correctly vs Incorrectly Sorted Waste at SCU Locations',
                         font: {
                             size: 27
                         }
@@ -3294,7 +3302,7 @@
                             display: true,
                             text: 'weight in pounds (lb)',
                             font: {
-                                size:20
+                                size:23
                             }
                         },
                     },
