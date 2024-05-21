@@ -12,14 +12,11 @@
 </head> 
 
 <body> 
-    
     <div> 
         <canvas id="stackedChartID"></canvas> 
     </div> 
 
-
     <script> 
-
         const data = 
         [
              {
@@ -3118,9 +3115,103 @@
 
         const buildingNames = [new Set(data.map(o => o.Building))];
         const buildingNamesSet = buildingNames[0];
-        const streamNames = [new Set(data.map(o => o.Stream))];
+        const streamNames = [new Set(data.map(o=> o.Building,s => s.Stream, m => m.Volume, n => n.Weight))];
 
         const buildingNamesArray = convertSetToArray(buildingNamesSet);
+
+        const dataInfo = [];
+
+        const facilitiesCorrect = [0];
+        const facilitiesWrong = [0];
+
+        const swigCorrect = [0];
+        const swigWrong = [0];
+
+        const VariHallCorrect = [0];
+        const VariHallWrong = [0];
+
+        const MalleyCorrect = [0];
+        const MalleyWrong = [0];
+
+        const UniversityCorrect = [0];
+        const UniversityWrong = [0];
+
+        const GrahamCorrect = [0];
+        const GrahamWrong = [0];
+
+        const BensonCorrect = [0];
+        const BensonWrong = [0];
+
+        const LCCorrect = [0];
+        const LCWrong = [0];
+
+        for(let i = 0; i < data.length; i++) {
+            let obj = data[i];
+            if(obj.Building == "Swig") {
+                if(obj.Stream.includes("in")) {
+                    swigWrong[0] = swigWrong[0] + obj.Volume;
+                } else if (!(obj.Stream.includes("in"))) {
+                    swigCorrect[0] = swigCorrect[0] + obj.Volume;
+                }
+            }
+            if(obj.Building == "Vari Hall and Lucas Hall") {
+                if(obj.Stream.includes("in")) {
+                    VariHallWrong[0] = VariHallWrong[0] + obj.Volume;
+                } else if (!(obj.Stream.includes("in"))) {
+                    VariHallCorrect[0] = VariHallCorrect[0] + obj.Volume;
+                }
+            }  
+            if(obj.Building == "Facilities") {
+                if(obj.Stream.includes("in")) {
+                    facilitiesWrong[0] = facilitiesWrong[0] + obj.Volume;
+                } else if (!(obj.Stream.includes("in"))) {
+                    facilitiesCorrect[0] = facilitiesCorrect[0] + obj.Volume;
+                }
+            }  
+            if(obj.Building == "Malley") {
+                if(obj.Stream.includes("in")) {
+                    MalleyWrong[0] = MalleyWrong[0] + obj.Volume;
+                } else if (!(obj.Stream.includes("in"))) {
+                    MalleyCorrect[0] = MalleyCorrect[0] + obj.Volume;
+                }
+            } 
+            if(obj.Building == "University Villas") {
+                if(obj.Stream.includes("in")) {
+                    UniversityWrong[0] = UniversityWrong[0] + obj.Volume;
+                } else if (!(obj.Stream.includes("in"))) {
+                    UniversityCorrect[0] = UniversityCorrect[0] + obj.Volume;
+                }
+            } 
+            if(obj.Building == "Graham") {
+                if(obj.Stream.includes("in")) {
+                    GrahamWrong[0] = GrahamWrong[0] + obj.Volume;
+                } else if (!(obj.Stream.includes("in"))) {
+                    GrahamCorrect[0] = GrahamCorrect[0] + obj.Volume;
+                }
+            }
+            if(obj.Building == "Benson Center") {
+                if(obj.Stream.includes("in")) {
+                    BensonWrong[0] = BensonWrong[0] + obj.Volume;
+                } else if (!(obj.Stream.includes("in"))) {
+                    BensonCorrect[0] = BensonCorrect[0] + obj.Volume;
+                }
+            } 
+            if(obj.Building == "Learning Commons") {
+                if(obj.Stream.includes("in")) {
+                    if(obj.Volume == undefined || value == null)
+                    obj.Volume = 0;
+                    LCWrong[0] = LCWrong[0] + obj.Volume;
+                } else if (!(obj.Stream.includes("in"))) {
+                    if(obj.Volume == undefined || value == null)
+                    obj.Volume = 0;
+                    LCCorrect[0] = LCCorrect[0] + obj.Volume;
+                }
+            }  
+
+        }
+        console.log(LCCorrect);
+        console.log(LCWrong);
+
 
         // Get the drawing context on the canvas 
         var myContext = document.getElementById( 
@@ -3129,21 +3220,13 @@
             type: 'bar', 
             data: { 
                 labels: buildingNamesArray, 
-                datasets: [{ 
-                    label: 'Recycling', 
-                    backgroundColor: "blue", 
-                    data: [1, 15.8], 
-                }, { 
-                    label: 'Swig', 
-                    backgroundColor: "green", 
-                    data: [1, 7.4], 
-                }], 
+                datasets: dataInfo, 
             }, 
             options: { 
                 plugins: { 
                     title: { 
-                        display: false, 
-                        text: 'Stacked Bar chart for pollution status' 
+                        display: true, 
+                        text: 'Total Density Of Waste Generated on SCU Campus' 
                     }, 
                 }, 
                 scales: { 
