@@ -3113,6 +3113,7 @@
             ];
 
 
+
         const buildingNames = [new Set(data.map(o => o.Building))];
         const buildingNamesSet = buildingNames[0];
         const streamNames = [new Set(data.map(o=> o.Building,s => s.Stream, m => m.Volume, n => n.Weight))];
@@ -3260,7 +3261,8 @@
         var myChart = new Chart(myContext, { 
             type: 'bar', 
             data: { 
-                labels: buildingNamesArray, 
+                labels: buildingNamesArray,
+
                 datasets: 
                 [{ 
                     label: 'Incorrectly Sorted Waste', 
@@ -3276,7 +3278,10 @@
                 plugins: { 
                     title: { 
                         display: true, 
-                        text: 'Total Density Of Waste Generated on SCU Campus' 
+                        text: 'Volume of Correctly vs Incorrectly Sorted Waste',
+                        font: {
+                            size: 27
+                        }
                     }, 
                 }, 
                 scales: { 
@@ -3285,9 +3290,16 @@
                     }, 
                     y: { 
                         stacked: true, 
-                    } 
-                } 
-            } 
+                        title: {
+                            display: true,
+                            text: 'weight in pounds (lb)',
+                            font: {
+                                size:20
+                            }
+                        },
+                    },
+                },
+            },
         }); 
 
         function convertSetToArray(set) {
