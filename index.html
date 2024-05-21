@@ -3223,35 +3223,35 @@
 
         BensonTotal[0] = BensonWrong[0];
         BensonTotal[1] = BensonCorrect[0];
-        console.log(BensonTotal);
+        console.log("benson " +BensonTotal);
 
         swigTotal[0] = swigWrong[0];
         swigTotal[1] = swigCorrect[0];
-        console.log(swigTotal);
+        console.log("swig " +swigTotal);
 
         facilitiesTotal[0] = facilitiesWrong[0];
         facilitiesTotal[1] = facilitiesCorrect[0];
-        console.log(facilitiesTotal);
+        console.log("facilities " +facilitiesTotal);
 
         VariHallTotal[0] = VariHallWrong[0];
         VariHallTotal[1] = VariHallCorrect[0];
-        console.log(VariHallTotal);
+        console.log("vari " +VariHallTotal);
 
         LCTotal[0] = LCWrong[0];
         LCTotal[1] = LCCorrect[0];
-        console.log(LCTotal);
+        console.log("lc" +LCTotal);
 
         MalleyTotal[0] = MalleyWrong[0];
         MalleyTotal[1] = MalleyCorrect[0];
-        console.log(MalleyTotal);
+        console.log("malley " +MalleyTotal);
 
         GrahamTotal[0] = GrahamWrong[0];
         GrahamTotal[1] = GrahamCorrect[0];
-        console.log(GrahamTotal);
+        console.log("graham " +GrahamTotal);
 
         UniversityTotal[0] = UniversityWrong[0];
         UniversityTotal[1] = UniversityCorrect[0];
-        console.log(UniversityTotal);
+        console.log("university " +UniversityTotal);
 
 
         // Get the drawing context on the canvas 
@@ -3263,37 +3263,13 @@
                 labels: buildingNamesArray, 
                 datasets: 
                 [{ 
-                    label: 'BENSON', 
-                    backgroundColor: 'blue', 
-                    data: BensonTotal, 
+                    label: 'Incorrectly Sorted Waste', 
+                    backgroundColor: "Red", 
+                    data: [16.42,21.88,17.96,44.17,19.70,21.34,70.88,0], 
                 }, { 
-                    label: 'SWIG', 
-                    backgroundColor: 'red', 
-                    data: swigTotal, 
-                }, { 
-                    label: 'VARI', 
-                    backgroundColor: 'green', 
-                    data: VariHallTotal, 
-                }, { 
-                    label: 'MALLEY', 
-                    backgroundColor: 'yellow', 
-                    data: MalleyTotal, 
-                }, { 
-                    label: 'UNIVERSITY', 
-                    backgroundColor: 'black', 
-                    data: UniversityTotal, 
-                }, { 
-                    label: 'GRAHAM', 
-                    backgroundColor: 'orange', 
-                    data: GrahamTotal, 
-                }, { 
-                    label: 'FACILITIES', 
-                    backgroundColor: 'purple', 
-                    data: facilitiesTotal, 
-                }, { 
-                    label: 'LEARNING CENTER', 
-                    backgroundColor: 'white', 
-                    data: LCTotal, 
+                    label: 'Correctly Sorted Waste', 
+                    backgroundColor: "Green", 
+                    data: [3.18,3.88,5.95,9.9,2.6,3.17,6.97,0], 
                 }],             
             }, 
             options: { 
@@ -3305,10 +3281,10 @@
                 }, 
                 scales: { 
                     x: { 
-                        stacked: false, 
+                        stacked: true, 
                     }, 
                     y: { 
-                        stacked: false 
+                        stacked: true, 
                     } 
                 } 
             } 
