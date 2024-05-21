@@ -3262,7 +3262,6 @@
             type: 'bar', 
             data: { 
                 labels: buildingNamesArray,
-
                 datasets: 
                 [{ 
                     label: 'Incorrectly Sorted Waste', 
@@ -3294,7 +3293,12 @@
                 }, 
                 scales: { 
                     x: { 
-                        stacked: true, 
+                        stacked: true,
+                        ticks: {
+                            font: {
+                                size: 14
+                            }
+                        }
                     }, 
                     y: { 
                         stacked: true, 
