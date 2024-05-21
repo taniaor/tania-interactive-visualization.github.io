@@ -3157,66 +3157,71 @@
         for(let i = 0; i < data.length; i++) {
             let obj = data[i];
             if(obj.Building == "Swig") {
-                if(obj.Stream.includes("in")) {
+                if (/\s/.test(obj.Stream)) {
                     swigWrong[0] = swigWrong[0] + obj.Volume;
-                } else if (!(obj.Stream.includes("in"))) {
-                    swigCorrect[0] = swigCorrect[0] + obj.Volume;
+                } else {
+                        swigCorrect[0] = swigCorrect[0] + obj.Volume;
                 }
             }
             if(obj.Building == "Vari Hall and Lucas Hall") {
-                if(obj.Stream.includes("in")) {
+                if (/\s/.test(obj.Stream)) {
                     VariHallWrong[0] = VariHallWrong[0] + obj.Volume;
-                } else if (!(obj.Stream.includes("in"))) {
+                } else {
                     VariHallCorrect[0] = VariHallCorrect[0] + obj.Volume;
                 }
             }  
             if(obj.Building == "Facilities") {
-                if(obj.Stream.includes("in")) {
+                if (/\s/.test(obj.Stream)) {
                     facilitiesWrong[0] = facilitiesWrong[0] + obj.Volume;
-                } else if (!(obj.Stream.includes("in"))) {
+                } else{
                     facilitiesCorrect[0] = facilitiesCorrect[0] + obj.Volume;
                 }
             }  
             if(obj.Building == "Malley") {
-                if(obj.Stream.includes("in")) {
-                    if(obj.Volume == undefined || obj.Volume == null)
-                    obj.Volume = 0;
+                if (/\s/.test(obj.Stream)) {
+                    if(obj.Volume == undefined || obj.Volume == null) {
+                        obj.Volume = 0;
+                    }
                     MalleyWrong[0] = MalleyWrong[0] + obj.Volume;
-                } else if (!(obj.Stream.includes("in"))) {
-                    if(obj.Volume == undefined || obj.Volume == null)
-                    obj.Volume = 0;
+                } else {
+                    if(obj.Volume == undefined || obj.Volume == null) {
+                        obj.Volume = 0;
+
+                    }
                     MalleyCorrect[0] = MalleyCorrect[0] + obj.Volume;
                 }
             } 
             if(obj.Building == "University Villas") {
-                if(obj.Stream.includes("in")) {
+                if (/\s/.test(obj.Stream)) {
                     UniversityWrong[0] = UniversityWrong[0] + obj.Volume;
-                } else if (!(obj.Stream.includes("in"))) {
+                } else{
                     UniversityCorrect[0] = UniversityCorrect[0] + obj.Volume;
                 }
             } 
             if(obj.Building == "Graham") {
-                if(obj.Stream.includes("in")) {
+                if (/\s/.test(obj.Stream)) {
                     GrahamWrong[0] = GrahamWrong[0] + obj.Volume;
-                } else if (!(obj.Stream.includes("in"))) {
+                } else {
                     GrahamCorrect[0] = GrahamCorrect[0] + obj.Volume;
                 }
             }
             if(obj.Building == "Benson Center") {
-                if(obj.Stream.includes("in")) {
+                if (/\s/.test(obj.Stream)) {
                     BensonWrong[0] = BensonWrong[0] + obj.Volume;
-                } else if (!(obj.Stream.includes("in"))) {
+                } else {
                     BensonCorrect[0] = BensonCorrect[0] + obj.Volume;
                 }
             } 
             if(obj.Building == "Learning Commons") {
-                if(obj.Stream.includes("in")) {
-                    if(obj.Volume == undefined || obj.Volume == null)
-                    obj.Volume = 0;
+                if (/\s/.test(obj.Stream)) {
+                    if(obj.Volume == undefined || obj.Volume == null) {
+                        obj.Volume = 0;
+                    }
                     LCWrong[0] = LCWrong[0] + obj.Volume;
-                } else if (!(obj.Stream.includes("in"))) {
-                    if(obj.Volume == undefined || obj.Volume == null)
-                    obj.Volume = 0;
+                } else {
+                    if(obj.Volume == undefined || obj.Volume == null) {
+                        obj.Volume = 0;
+                    }
                     LCCorrect[0] = LCCorrect[0] + obj.Volume;
                 }
             } 
@@ -3267,11 +3272,11 @@
                     label: 'Incorrectly Sorted Waste', 
                     fontsize: 15,
                     backgroundColor: "Red", 
-                    data: [16.42,21.88,17.96,44.17,19.70,21.34,70.88,0], 
+                    data: [9.11,21.88,17.96,24.49,19.70,21.34,59.04,0], 
                 }, { 
                     label: 'Correctly Sorted Waste', 
                     backgroundColor: "Green", 
-                    data: [3.18,3.88,5.95,9.9,2.6,3.17,6.97,0], 
+                    data: [10.49,3.88,5.95,29.58,2.6,3.17,19.81,0], 
                 }],             
             }, 
             options: { 
