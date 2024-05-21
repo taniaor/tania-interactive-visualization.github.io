@@ -3123,27 +3123,35 @@
 
         const facilitiesCorrect = [0];
         const facilitiesWrong = [0];
+        const facilitiesTotal = [0,0];
 
         const swigCorrect = [0];
         const swigWrong = [0];
+        const swigTotal = [0,0];
 
         const VariHallCorrect = [0];
         const VariHallWrong = [0];
+        const VariHallTotal = [0,0];
 
         const MalleyCorrect = [0];
         const MalleyWrong = [0];
+        const MalleyTotal = [0,0];
 
         const UniversityCorrect = [0];
         const UniversityWrong = [0];
+        const UniversityTotal = [0,0];
 
         const GrahamCorrect = [0];
         const GrahamWrong = [0];
+        const GrahamTotal = [0,0];
 
         const BensonCorrect = [0];
         const BensonWrong = [0];
+        const BensonTotal = [0,0];
 
         const LCCorrect = [0];
         const LCWrong = [0];
+        const LCTotal = [0,0];
 
         for(let i = 0; i < data.length; i++) {
             let obj = data[i];
@@ -3170,8 +3178,12 @@
             }  
             if(obj.Building == "Malley") {
                 if(obj.Stream.includes("in")) {
+                    if(obj.Volume == undefined || obj.Volume == null)
+                    obj.Volume = 0;
                     MalleyWrong[0] = MalleyWrong[0] + obj.Volume;
                 } else if (!(obj.Stream.includes("in"))) {
+                    if(obj.Volume == undefined || obj.Volume == null)
+                    obj.Volume = 0;
                     MalleyCorrect[0] = MalleyCorrect[0] + obj.Volume;
                 }
             } 
@@ -3198,19 +3210,48 @@
             } 
             if(obj.Building == "Learning Commons") {
                 if(obj.Stream.includes("in")) {
-                    if(obj.Volume == undefined || value == null)
+                    if(obj.Volume == undefined || obj.Volume == null)
                     obj.Volume = 0;
                     LCWrong[0] = LCWrong[0] + obj.Volume;
                 } else if (!(obj.Stream.includes("in"))) {
-                    if(obj.Volume == undefined || value == null)
+                    if(obj.Volume == undefined || obj.Volume == null)
                     obj.Volume = 0;
                     LCCorrect[0] = LCCorrect[0] + obj.Volume;
                 }
-            }  
+            } 
+        } 
 
-        }
-        console.log(LCCorrect);
-        console.log(LCWrong);
+        BensonTotal[0] = BensonWrong[0];
+        BensonTotal[1] = BensonCorrect[0];
+        console.log(BensonTotal);
+
+        swigTotal[0] = swigWrong[0];
+        swigTotal[1] = swigCorrect[0];
+        console.log(swigTotal);
+
+        facilitiesTotal[0] = facilitiesWrong[0];
+        facilitiesTotal[1] = facilitiesCorrect[0];
+        console.log(facilitiesTotal);
+
+        VariHallTotal[0] = VariHallWrong[0];
+        VariHallTotal[1] = VariHallCorrect[0];
+        console.log(VariHallTotal);
+
+        LCTotal[0] = LCWrong[0];
+        LCTotal[1] = LCCorrect[0];
+        console.log(LCTotal);
+
+        MalleyTotal[0] = MalleyWrong[0];
+        MalleyTotal[1] = MalleyCorrect[0];
+        console.log(MalleyTotal);
+
+        GrahamTotal[0] = GrahamWrong[0];
+        GrahamTotal[1] = GrahamCorrect[0];
+        console.log(GrahamTotal);
+
+        UniversityTotal[0] = UniversityWrong[0];
+        UniversityTotal[1] = UniversityCorrect[0];
+        console.log(UniversityTotal);
 
 
         // Get the drawing context on the canvas 
@@ -3220,7 +3261,40 @@
             type: 'bar', 
             data: { 
                 labels: buildingNamesArray, 
-                datasets: dataInfo, 
+                datasets: 
+                [{ 
+                    label: 'BENSON', 
+                    backgroundColor: 'blue', 
+                    data: BensonTotal, 
+                }, { 
+                    label: 'SWIG', 
+                    backgroundColor: 'red', 
+                    data: swigTotal, 
+                }, { 
+                    label: 'VARI', 
+                    backgroundColor: 'green', 
+                    data: VariHallTotal, 
+                }, { 
+                    label: 'MALLEY', 
+                    backgroundColor: 'yellow', 
+                    data: MalleyTotal, 
+                }, { 
+                    label: 'UNIVERSITY', 
+                    backgroundColor: 'black', 
+                    data: UniversityTotal, 
+                }, { 
+                    label: 'GRAHAM', 
+                    backgroundColor: 'orange', 
+                    data: GrahamTotal, 
+                }, { 
+                    label: 'FACILITIES', 
+                    backgroundColor: 'purple', 
+                    data: facilitiesTotal, 
+                }, { 
+                    label: 'LEARNING CENTER', 
+                    backgroundColor: 'white', 
+                    data: LCTotal, 
+                }],             
             }, 
             options: { 
                 plugins: { 
@@ -3231,10 +3305,10 @@
                 }, 
                 scales: { 
                     x: { 
-                        stacked: true, 
+                        stacked: false, 
                     }, 
                     y: { 
-                        stacked: true 
+                        stacked: false 
                     } 
                 } 
             } 
